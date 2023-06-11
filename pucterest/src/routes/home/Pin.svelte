@@ -13,8 +13,8 @@
     if (size) {
       return size
     }
-    if (description.length < 150) return "card_small";
-    if (description.length < 250) return "card_medium";
+    if (description.length < 100) return "card_small";
+    if (description.length < 200) return "card_medium";
     return "card_large";
   };
 </script>
