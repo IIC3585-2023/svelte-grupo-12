@@ -1,31 +1,38 @@
 <script>
   import logo from "$lib/images/pucterest.png";
-  import { getContext } from 'svelte';
+  import { getContext } from "svelte";
+  import { get } from "../store/images.js";
   // Retrieve theme store from context
-  export const theme = getContext('theme');
+  export const theme = getContext("theme");
   export function toggleTheme() {
-    if ($theme == 'light') {
-      theme.set('dark');
+    if ($theme == "light") {
+      theme.set("dark");
     } else {
-      theme.set('light');
+      theme.set("light");
     }
-	}
+  }
+  let search = "";
+  const handleSearch = (e) => {
+    if (e.key === "Enter") {
+      get(`https://api.unsplash.com/photos/random?count=30&query=${search}`);
+    }
+  };
 </script>
 
-<div class="pinterest {($theme == 'dark')? ('dark-background'):('')}" >
+<div class="pinterest {$theme == 'dark' ? 'dark-background' : ''}">
   <div class="left">
     <a href="#" class="logo">
       <img src={logo} alt="Pucterest logo" width="50" height="50" />
     </a>
   </div>
-  <div class="search {($theme == 'dark')? ('dark-background'):('')}">
+  <div class="search {$theme == 'dark' ? 'dark-background' : ''}">
     <i class="fas fa-search" />
-    <input id="search-bar" name="" placeholder="Search" type="text" />
+    <input id="search-bar" placeholder="Write and press Enter to search" type="text" bind:value={search} on:keydown={handleSearch}/>
   </div>
   <div class="right">
     <a href="#" class="items hidden"><i class="fas fa-bell" /></a>
     <a href="#" class="items hidden"><i class="far fa-comment-dots" /></a>
-    <a href="#" class="avatar {($theme == 'dark')? ('dark-switch'):('')}">
+    <a href="#" class="avatar {$theme == 'dark' ? 'dark-switch' : ''}">
       <div class="img">
         <img
           src="https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1488&q=80"
@@ -35,7 +42,12 @@
     </a>
     <!-- obtenido de https://dev.to/tqbit/create-your-own-dark-mode-toggle-component-with-vue-js-1284 -->
     <div>
-      <button on:click={toggleTheme} class="switch items {($theme == 'dark')? ('dark-switch'):('')}"> 🌙 </button>
+      <button
+        on:click={toggleTheme}
+        class="switch items {$theme == 'dark' ? 'dark-switch' : ''}"
+      >
+        🌙
+      </button>
     </div>
   </div>
 </div>
