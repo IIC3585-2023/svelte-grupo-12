@@ -1,10 +1,20 @@
 <script>
 	import Navbar from './Navbar.svelte';
+	import { setContext } from 'svelte';
+	import { writable } from 'svelte/store';
+	// Create a store and update it when necessary...
+	const theme = writable();
+	$: theme.set('light');
+	// ...and add it to the context for child components to access
+	setContext('theme', theme);
 </script>
 
 <div class="app">
-	<Navbar />
-
+	<div class="navbar">
+		<Navbar />
+	</div>
+	<div class="navbar-separator" ></div>
+	<p>{$theme}</p>
 	<main>
 		<slot />
 	</main>
@@ -30,6 +40,16 @@
 		max-width: 64rem;
 		margin: 0 auto;
 		box-sizing: border-box;
+	}
+
+	.navbar {
+		position: fixed;
+		width: 100%;
+		top: 0px;
+		z-index: 999999;
+	}
+	.navbar-separator {
+		height: 60px;
 	}
 
 	footer {
