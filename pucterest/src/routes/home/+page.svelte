@@ -19,8 +19,8 @@
       {#each $data as image}
         <Pin
           url="{image.urls.regular}"
-          description="A random image"
-          size="{image.size}"
+          description="{image.description || image.alt_description}"
+          user="{image.user}"
         />
       {/each}
     </div>

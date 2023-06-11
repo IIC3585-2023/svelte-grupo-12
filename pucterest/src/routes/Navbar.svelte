@@ -21,6 +21,7 @@
 
 <div class="pinterest {$theme == 'dark' ? 'dark-background' : ''}">
   <div class="left">
+    <a href="#" class="items hidden"><i class="fas fa-bell" /></a>
     <a href="#" class="logo">
       <img src={logo} alt="Pucterest logo" width="50" height="50" />
     </a>
