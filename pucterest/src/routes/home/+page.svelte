@@ -1,9 +1,9 @@
 <script>
   import Pin from "./Pin.svelte";
+  import LoadMore from "../LoadMore.svelte";
   import fetchImage from "../../store/images.js";
-
   let url = "https://api.unsplash.com/photos/random?count=30";
-  const [data, loading, error, get] = fetchImage(url);
+  const [data, loading, error, get, loadMore] = fetchImage(url);
   get;
 
 </script>
@@ -22,10 +22,11 @@
         <Pin
           url="{image.urls.regular}"
           description="A random image"
-          size="small"
+          size="{image.size}"
         />
       {/each}
     </div>
+    <LoadMore />
   </div>
 {/if}
 

@@ -1,10 +1,11 @@
 <script>
-    export let url = "#";
-    export let description = "";
-    export let size = "small";
+  import { fly } from "svelte/transition";
+  export let url = "#";
+  export let description = "";
+    export let size = "card_small";
 </script>
 
-<div class="card card_{size}">
+<div class="card {size}" transition:fly={{ y: 200, duration: 2000 }}>
    <img src="{url}" alt="{description}"/>
 </div>
 

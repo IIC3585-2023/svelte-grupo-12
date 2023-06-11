@@ -26,7 +26,7 @@ export default function (url) {
       imageData.forEach((image) => {
         image.size = getRandomSize();
       });
-      console.info("imageData", imageData)
+      console.info("imageData", imageData);
       data.set(imageData);
     } catch (e) {
       error.set(e);
@@ -34,7 +34,27 @@ export default function (url) {
     loading.set(false);
   }
 
+  async function loadMore() {
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          Authorization:
+            "Client-ID 6H1smp1FpNFz-V7LF-BHILxuuM6MYd1aC_2lFqNN_2k",
+        },
+      });
+      const imageData = await response.json();
+      imageData.forEach((image) => {
+        image.size = getRandomSize();
+      });
+      console.info("imageData", imageData);
+      data.update(imageData);
+    } catch (e) {
+      error.set(e);
+    }
+  }
+
   get();
 
-  return [data, loading, error, get];
+  return [data, loading, error, get, loadMore];
 }
