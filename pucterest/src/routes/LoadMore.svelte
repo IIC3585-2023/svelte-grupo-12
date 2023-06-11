@@ -1,10 +1,12 @@
 <script setup>
-    export const onClick = () => {
-        console.log("clicked");
-    };
+  import { loadMore } from "../store/images.js";
+  let url = "https://api.unsplash.com/photos/random?count=30";
 </script>
 
-<button class="scroll" on:click={onClick}>+</button>
+<button
+  class="scroll"
+  on:click={()=>loadMore(url)}>+</button
+>
 
 <style>
   .scroll {
