@@ -11,12 +11,13 @@
   };
   const cardSize = () => {
     if (size) {
-      return size
+      return size;
     }
     if (description.length < 100) return "card_small";
     if (description.length < 200) return "card_medium";
     return "card_large";
   };
+
 </script>
 
 <div class="card {cardSize()}" transition:fly={{ y: 200, duration: 2000 }}>
@@ -36,11 +37,8 @@
     >
       <a class="avatar">
         <div class="img">
-          <img
-            src="{user.profile_image.small}"
-            alt="{user.name}"
-          />
-        </div>        
+          <img src={user.profile_image.small} alt={user.name} />
+        </div>
       </a>
       {description}
     </div>

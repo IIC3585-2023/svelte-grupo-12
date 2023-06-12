@@ -1,5 +1,5 @@
 <script>
-	import Navbar from './Navbar.svelte';
+	import Navbar from '../components/Navbar.svelte';
 	import { setContext } from 'svelte';
 	import { writable } from 'svelte/store';
 	// Create a store and update it when necessary...

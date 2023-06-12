@@ -1,6 +1,6 @@
 <script>
-  import Pin from "./Pin.svelte";
-  import LoadMore from "../LoadMore.svelte";
+  import Pin from "../../components/Pin.svelte";
+  import LoadMore from "../../components/LoadMore.svelte";
   import { getContext } from "svelte";
   import { data, loading, error, get } from "../../store/images.js";
   let url = "https://api.unsplash.com/photos/random?count=30";
@@ -16,7 +16,7 @@
 </script>
 
 <svelte:head>
-  <title>About</title>
+  <title>Home</title>
   <meta name="description" content="About this app" />
 </svelte:head>
 
