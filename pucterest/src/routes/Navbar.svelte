@@ -21,18 +21,33 @@
 
 <div class="pinterest {$theme == 'dark' ? 'dark-background' : ''}">
   <div class="left">
-    <a href="#" class="items hidden"><i class="fas fa-bell" /></a>
     <a href="#" class="logo">
       <img src={logo} alt="Pucterest logo" width="50" height="50" />
     </a>
+    <div class="mobile-buttons">
+      <a href="#" class="avatar {$theme == 'dark' ? 'dark-switch' : ''}">
+        <div class="img">
+          <img
+            src="https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1488&q=80"
+            alt=""
+          />
+        </div>
+      </a>
+      <!-- obtenido de https://dev.to/tqbit/create-your-own-dark-mode-toggle-component-with-vue-js-1284 -->
+      <div>
+        <button
+          on:click={toggleTheme}
+          class="switch items {$theme == 'dark' ? 'dark-switch' : ''}"
+        >
+          🌙
+        </button>
+      </div>
+    </div>
   </div>
   <div class="search {$theme == 'dark' ? 'dark-background' : ''}">
-    <i class="fas fa-search" />
     <input id="search-bar" placeholder="Write and press Enter to search" type="text" bind:value={search} on:keydown={handleSearch}/>
   </div>
   <div class="right">
-    <a href="#" class="items hidden"><i class="fas fa-bell" /></a>
-    <a href="#" class="items hidden"><i class="far fa-comment-dots" /></a>
     <a href="#" class="avatar {$theme == 'dark' ? 'dark-switch' : ''}">
       <div class="img">
         <img
@@ -60,6 +75,37 @@
   .switch {
     background: transparent;
     border: none;
+  }
+
+  .mobile-buttons {
+    display: none;
+  }
+
+  .left {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+  }
+
+  @media(max-width:660px) {
+    .pinterest {
+      flex-direction: column;
+    }
+    .left,.search {
+      margin-bottom: 10px;
+    }
+    .left {
+      justify-content: space-between;
+      width: 80%;
+    }
+    .right {
+      visibility: hidden;
+      height: 0;
+    }
+    .mobile-buttons {
+      display: flex;
+    }
   }
 
   button.dark-switch:hover {
@@ -112,11 +158,7 @@
     color: lightgray;
   }
 
-  .left {
-    display: flex;
-    align-items: center;
-    width: 20%;
-  }
+  
 
   .left .logo {
     border-radius: 50%;
@@ -215,6 +257,7 @@
     width: 20%;
     display: flex;
     align-items: center;
+    justify-content: center;
   }
 
   .items {

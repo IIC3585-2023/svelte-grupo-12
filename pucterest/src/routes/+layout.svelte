@@ -53,6 +53,11 @@
 	.navbar-separator {
 		height: 60px;
 	}
+	@media(max-width:660px) {
+		.navbar-separator {
+			height: 130px;
+		}
+	}
 
 	footer {
 		display: flex;
