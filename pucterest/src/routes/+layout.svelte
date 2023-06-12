@@ -9,7 +9,7 @@
 	setContext('theme', theme);
 </script>
 
-<div class="app">
+<div class="app {$theme == 'dark' ? 'dark-background' : ''}">
 	<div class="navbar">
 		<Navbar />
 	</div>
@@ -17,10 +17,8 @@
 	<main class="{$theme == 'dark' ? 'dark-background' : ''}">
 		<slot />
 	</main>
-
-	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-	</footer>
+	<br>
+	<br>
 </div>
 
 <style>

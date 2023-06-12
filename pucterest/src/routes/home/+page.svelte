@@ -34,6 +34,8 @@
       {/each}
     </div>
     <LoadMore />
+    <br>
+    <br>
   </div>
 {/if}
 
