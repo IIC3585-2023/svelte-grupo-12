@@ -14,8 +14,7 @@
 		<Navbar />
 	</div>
 	<div class="navbar-separator" ></div>
-	<p>{$theme}</p>
-	<main>
+	<main class="{$theme == 'dark' ? 'dark-background' : ''}">
 		<slot />
 	</main>
 
@@ -39,6 +38,10 @@
 		width: 100%;
 		margin: 0 auto;
 		box-sizing: border-box;
+	}
+
+	.dark-background {
+		background-color: black;
 	}
 
 	.navbar {
