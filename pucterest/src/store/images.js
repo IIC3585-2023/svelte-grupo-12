@@ -13,8 +13,8 @@ export const get = async (url) => {
       method: "GET",
       headers: {
         Authorization: 
-        //"Client-ID MWAxqOZG1EXPZkFrnlWZ4PyB-2aqQZpEZydGHRmjDJI",
-        "Client-ID 6H1smp1FpNFz-V7LF-BHILxuuM6MYd1aC_2lFqNN_2k",
+        "Client-ID MWAxqOZG1EXPZkFrnlWZ4PyB-2aqQZpEZydGHRmjDJI",
+        //"Client-ID 6H1smp1FpNFz-V7LF-BHILxuuM6MYd1aC_2lFqNN_2k",
         //"Client-ID nwcUw1WtMWgLsEeQQG_f8osbotd9JvJLJdPuVLnSsEw",
       },
     });
@@ -32,8 +32,8 @@ export const loadMore = async (url) => {
       method: "GET",
       headers: {
         Authorization: 
-        //"Client-ID MWAxqOZG1EXPZkFrnlWZ4PyB-2aqQZpEZydGHRmjDJI",
-        "Client-ID 6H1smp1FpNFz-V7LF-BHILxuuM6MYd1aC_2lFqNN_2k",
+        "Client-ID MWAxqOZG1EXPZkFrnlWZ4PyB-2aqQZpEZydGHRmjDJI",
+        //"Client-ID 6H1smp1FpNFz-V7LF-BHILxuuM6MYd1aC_2lFqNN_2k",
         //"Client-ID nwcUw1WtMWgLsEeQQG_f8osbotd9JvJLJdPuVLnSsEw",
       },
     });

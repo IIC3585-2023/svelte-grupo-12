@@ -20,28 +20,35 @@
   };
 
   // https://svelte.dev/repl/26ba12b3fbd146eaaefc8b024a826da7?version=3.5.1
-  const loaded = new Map();
+  $: loaded = new Map();
+
+  let imageElement;
+  
+  $: {
+    if (imageElement && url) {
+      // Set to loading image when url changes
+      imageElement.src = loading;
+      if (loaded.has(url)) {
+        imageElement.src = url;
+      } else {
+        const img = new Image();
+        img.src = url;
+        img.onload = () => {
+          loaded.set(url, img);
+          imageElement.src = url;
+        };
+      }
+    }
+  }
 
   function lazy(node, data) {
-		if (loaded.has(data.src)) {
-			node.setAttribute('src', data.src);
-		} else {
-			// simulate slow loading network
-			setTimeout(() => {
-				const img = new Image();
-				img.src = data.src;
-				img.onload = () => {
-					loaded.set(data.src, img);
-					node.setAttribute('src', data.src); 
-				};
-			}, 2000);
-		}
-
-		return {
-			destroy(){} // noop
-		};
-	}
-
+    imageElement = node;
+    return {
+      destroy() {
+        imageElement = null;
+      },
+    };
+  }
 </script>
 
 <div class="card {cardSize()}" transition:fly={{ y: 200, duration: 2000 }}>
@@ -52,7 +59,7 @@
       alt={description}
       in:fade={{ delay: 100 }}
       on:click={handleClick}
-      use:lazy="{{src: url}}"
+      use:lazy={{ src: url }}
     />
   {:else}
     <div
