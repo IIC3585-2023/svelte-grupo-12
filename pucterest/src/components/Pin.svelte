@@ -1,5 +1,6 @@
 <script>
   import { fly, fade } from "svelte/transition";
+  import loading from "$lib/images/loading.png";
   export let url = "#";
   export let description = "";
   export let size = "";
@@ -18,16 +19,40 @@
     return "card_large";
   };
 
+  // https://svelte.dev/repl/26ba12b3fbd146eaaefc8b024a826da7?version=3.5.1
+  const loaded = new Map();
+
+  function lazy(node, data) {
+		if (loaded.has(data.src)) {
+			node.setAttribute('src', data.src);
+		} else {
+			// simulate slow loading network
+			setTimeout(() => {
+				const img = new Image();
+				img.src = data.src;
+				img.onload = () => {
+					loaded.set(data.src, img);
+					node.setAttribute('src', data.src); 
+				};
+			}, 2000);
+		}
+
+		return {
+			destroy(){} // noop
+		};
+	}
+
 </script>
 
 <div class="card {cardSize()}" transition:fly={{ y: 200, duration: 2000 }}>
   {#if image}
     <img
       class="card_img"
-      src={url}
+      src={loading}
       alt={description}
       in:fade={{ delay: 100 }}
       on:click={handleClick}
+      use:lazy="{{src: url}}"
     />
   {:else}
     <div
