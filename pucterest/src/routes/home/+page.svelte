@@ -1,9 +1,18 @@
 <script>
   import Pin from "./Pin.svelte";
   import LoadMore from "../LoadMore.svelte";
+  import { getContext } from "svelte";
   import { data, loading, error, get } from "../../store/images.js";
   let url = "https://api.unsplash.com/photos/random?count=30";
   $: get(url);
+  export const theme = getContext("theme");
+  export function toggleTheme() {
+    if ($theme == "light") {
+      theme.set("dark");
+    } else {
+      theme.set("light");
+    }
+  }
 </script>
 
 <svelte:head>
@@ -15,7 +24,7 @@
   Loading: {$loading}
 {:else}
   <div>
-    <div class="pin_container">
+    <div class="pin_container {$theme == 'dark' ? 'dark-background' : ''}">
       {#each $data as image}
         <Pin
           url="{image.urls.regular}"
