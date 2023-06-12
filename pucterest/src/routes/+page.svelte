@@ -2,10 +2,9 @@
 	import Pin from "../components/Pin.svelte";
 	import LoadMore from "../components/LoadMore.svelte";
 	import { getContext, onMount } from "svelte";
-	import {data, loading, error, get} from "../store/images";
-	let url = "https://api.unsplash.com/photos/random?count=30";
+	import {data, loading, get} from "../store/images";
 	onMount(() => {
-		get(url);
+		get();
 	});
 	export const theme = getContext("theme");
 	export function toggleTheme() {

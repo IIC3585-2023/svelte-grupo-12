@@ -3,8 +3,12 @@ import { writable } from "svelte/store";
 export const loading = writable(false);
 export const error = writable(false);
 export const data = writable([]);
+let url = "https://api.unsplash.com/photos/random?count=30";
 
-export const get = async (url) => {
+export const changeUrl = (newUrl) => {
+  url = newUrl;
+};
+export const get = async () => {
   loading.set(true);
   error.set(false);
   console.info("get", url);
@@ -26,7 +30,7 @@ export const get = async (url) => {
   loading.set(false);
 };
 
-export const loadMore = async (url) => {
+export const loadMore = async () => {
   try {
     const response = await fetch(url, {
       method: "GET",
